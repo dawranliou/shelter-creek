@@ -1,0 +1,63 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "cabin.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "": {
+            "scaleInDock": 2.6293
+        },
+        "background.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "cabin.tmx": {
+            "scale": 1.52,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 573.3552631578948,
+                "y": 241.44736842105266
+            }
+        },
+        "cabin.tmx#background": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "cabin.tmx#spritesheet": {
+            "scaleInDock": 2.6293
+        },
+        "spritesheet.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 0.9066,
+            "scaleInEditor": 1
+        }
+    },
+    "last.exportedFilePath": "/Users/dawran6/projects/shelter-creek/assets",
+    "last.imagePath": "/Users/dawran6/projects/shelter-creek/assets",
+    "map.lastUsedExportFilter": "Lua files (*.lua)",
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "openFiles": [
+        "cabin.tmx",
+        "background.tsx",
+        "spritesheet.tsx"
+    ],
+    "project": "map.tiled-project",
+    "property.type": "string",
+    "recentFiles": [
+        "spritesheet.tsx",
+        "cabin.tmx",
+        "background.tsx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
+}
