@@ -10,7 +10,7 @@ return {
   tilewidth = 16,
   tileheight = 16,
   nextlayerid = 7,
-  nextobjectid = 33,
+  nextobjectid = 34,
   properties = {},
   tilesets = {
     {
@@ -283,7 +283,9 @@ return {
           height = 16,
           rotation = 0,
           visible = true,
-          properties = {}
+          properties = {
+            ["text"] = "Go pick up your first mushroom!"
+          }
         },
         {
           id = 25,
@@ -309,7 +311,9 @@ return {
           height = 64,
           rotation = 0,
           visible = true,
-          properties = {}
+          properties = {
+            ["target"] = "forest"
+          }
         }
       }
     }

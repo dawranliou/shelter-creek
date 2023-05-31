@@ -1,3 +1,4 @@
+(local fennel (require "lib/fennel"))
 (local sti (require "lib/sti"))
 (local Camera (require "lib/camera"))
 (local anim8 (require "lib/anim8"))
@@ -8,6 +9,9 @@
 
 (local camera (Camera 0 0 2))
 (var player nil)
+(var guides {})
+(var mushrooms {})
+(var portals {})
 
 (local sprite (love.graphics.newImage "assets/spritesheet.png"))
 (local shroomdex-quad (love.graphics.newQuad 0 (* 9 16) (* 9 16) (* 6 16)
@@ -19,6 +23,9 @@
 (local right-quad (love.graphics.newQuad 16 (* 5 16) 16 16
                                          (sprite:getWidth)
                                          (sprite:getHeight)))
+(local dialog-quad (love.graphics.newQuad (* 9 16) (* 2 16) (* 8 16) (* 4 16)
+                                          (sprite:getWidth)
+                                          (sprite:getHeight)))
 
 (local animations {:idle {:left nil
                           :right nil}
@@ -50,7 +57,7 @@
 (var world-w (* map.width map.tilewidth))
 (var world-h (* map.height map.tileheight))
 
-(fn draw-player-layer [self]
+(fn draw-sprites-layer [self]
   (: (. animations player.state player.dir)
      :draw
      player.sprite
@@ -69,7 +76,46 @@
     ;;                       (math.floor player.y))
     ))
 
-(fn update-player-layer [self dt]
+(var collect-timer 0)
+(var collect-target nil)
+
+(fn collect-mushroom [mushroom]
+  (when (not= mushroom.state :collected)
+    (set mushroom.state :collected)
+    (print "collected:" mushroom.name)))
+
+(fn run-collect-system [player entities]
+  (each [key entity (pairs entities)]
+    (when (bump.rect.detectCollision
+           player.x player.y player.width player.height
+           entity.x entity.y entity.width entity.height)
+      (collect-mushroom entity))))
+
+(fn show-guidance [guide]
+  (when (not= guide.state :active)
+    (set guide.state :active)
+    (print "guide:" guide.text)))
+
+(fn run-guidance-system [player entities]
+  (each [key entity (pairs entities)]
+    (when (bump.rect.detectCollision
+           player.x player.y player.width player.height
+           entity.x entity.y entity.width entity.height)
+      (show-guidance entity))))
+
+(fn enter-portal [portal]
+  (when (not= portal.state :entered)
+    (set portal.state :entered)
+    (print "entering:" portal.target)))
+
+(fn run-portal-system [player entities]
+  (each [key entity (pairs entities)]
+    (when (bump.rect.detectCollision
+           player.x player.y player.width player.height
+           entity.x entity.y entity.width entity.height)
+      (enter-portal entity))))
+
+(fn update-sprites-layer [self dt]
   (local prev-state player.state)
 
   (var target-x player.x)
@@ -108,6 +154,10 @@
   (when player.grounded?
     (set player.v 0))
 
+  (run-collect-system player mushrooms)
+  (run-guidance-system player guides)
+  (run-portal-system player portals)
+
   ;; animation state
   (if (not player.grounded?) (set player.state :fall)
       player.moving? (set player.state :walk)
@@ -129,6 +179,7 @@
   (set screen-w (/ w camera.scale))
   (set screen-h (/ h camera.scale))
   (set map (sti scene-path ["bump"]))
+  (set _G.map map)
   (set world-w (* map.width map.tilewidth))
   (set world-h (* map.height map.tileheight))
   (print "Res:" w h)
@@ -137,30 +188,53 @@
   (map:bump_init world)
 
   (each [key object (pairs map.objects) &until player]
-    (if (= object.name "Player")
-        (do
-          (print "Player:" object.x object.y)
-          (set player {:sprite sprite
-                       :state :fall
-                       :dir :right
-                       :grounded? false
-                       :moving? false
-                       :jumps 0
-                       :animation {:idle nil
-                                   :walk nil
-                                   :fall nil}
-                       :width object.width
-                       :height object.height
-                       :v 0
-                       :x object.x
-                       :y object.y})
-          (set _G.player player)
-          (world:add player
-                     player.x player.y player.width player.height))))
+    (when (= object.name "Player")
+      (print "Player:" object.x object.y)
+      (set player {:sprite sprite
+                   :state :fall
+                   :dir :right
+                   :grounded? false
+                   :moving? false
+                   :jumps 0
+                   :animation {:idle nil
+                               :walk nil
+                               :fall nil}
+                   :width object.width
+                   :height object.height
+                   :v 0
+                   :x object.x
+                   :y object.y})
+      (set _G.player player)
+      (world:add player
+                 player.x player.y player.width player.height)))
 
-  (doto (map:addCustomLayer "player")
-    (tset :draw draw-player-layer)
-    (tset :update update-player-layer))
+  (each [key object (pairs map.objects)]
+    (case object.type
+      "guide" (table.insert guides {:name object.name
+                                    :x object.x
+                                    :y object.y
+                                    :width object.width
+                                    :height object.height
+                                    :text object.properties.text})
+      "mushroom" (table.insert mushrooms {:name object.name
+                                          :x object.x
+                                          :y object.y
+                                          :width object.width
+                                          :height object.height})
+      "portal" (table.insert portals {:name object.name
+                                      :target object.properties.target
+                                      :x object.x
+                                      :y object.y
+                                      :width object.width
+                                      :height object.height})
+      _ :skip))
+  (set _G.mushrooms mushrooms)
+  (set _G.guides guides)
+  (set _G.portals portals)
+
+  (doto (map:addCustomLayer "sprites")
+    (tset :draw draw-sprites-layer)
+    (tset :update update-sprites-layer))
 
   (map:removeLayer "spawn point"))
 
@@ -171,6 +245,7 @@
   (map:draw (- camera.x) (- camera.y) camera.scale camera.scale)
   (love.graphics.push)
   (love.graphics.scale 3)
+
   (when shroomdex-mode?
     (love.graphics.setColor 0 0 0 0.95)
     (love.graphics.rectangle :fill 0 0 screen-w screen-h)
