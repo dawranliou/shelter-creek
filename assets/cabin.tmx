@@ -85,7 +85,7 @@
   </object>
   <object id="24" name="guide_2" type="guide" x="496" y="256" width="16" height="16">
    <properties>
-    <property name="text" value="Go pick up your first mushroom!"/>
+    <property name="text" value="Go collect all the mushrooms!"/>
    </properties>
   </object>
   <object id="25" name="mushroom_1" type="mushroom" x="720" y="256" width="16" height="16"/>

@@ -284,7 +284,7 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["text"] = "Go pick up your first mushroom!"
+            ["text"] = "Go collect all the mushrooms!"
           }
         },
         {

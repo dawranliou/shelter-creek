@@ -10,6 +10,7 @@
 (local camera (Camera 0 0 2))
 (var player nil)
 (var guides {})
+(var active-dialog nil)
 (var mushrooms {})
 (var portals {})
 
@@ -94,10 +95,12 @@
 (fn show-guidance [guide]
   (when (not= guide.state :active)
     (set guide.state :active)
-    (print "guide:" guide.text)))
+    (set active-dialog guide)))
 
 (fn dismiss-guidance [guide]
-  (set guide.state :inactive))
+  (when (and active-dialog (= active-dialog.name guide.name))
+    (set guide.state :inactive)
+    (set active-dialog nil)))
 
 (fn run-guidance-system [player entities]
   (each [key entity (pairs entities)]
@@ -247,9 +250,13 @@
   (love.graphics.clear (/ 25 255) (/ 26 255) (/ 31 255))
   (love.graphics.setColor 1 1 1)
   (map:draw (- camera.x) (- camera.y) camera.scale camera.scale)
+  (when active-dialog
+    (love.graphics.setColor 1 1 1)
+    (love.graphics.draw sprite dialog-quad 45 20 0 3)
+    (love.graphics.setColor 0 0 0)
+    (love.graphics.printf active-dialog.text 90 60 100 :left 0 3))
   (love.graphics.push)
   (love.graphics.scale 3)
-
   (when shroomdex-mode?
     (love.graphics.setColor 0 0 0 0.95)
     (love.graphics.rectangle :fill 0 0 screen-w screen-h)
