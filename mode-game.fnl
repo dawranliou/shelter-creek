@@ -376,6 +376,7 @@
   )
 
 ;; side effect on load
+(love.graphics.setNewFont "assets/Silkscreen-Regular.ttf" 8)
 (setup-scene "assets/map-cabin.lua")
 
 {: draw
