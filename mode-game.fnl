@@ -124,9 +124,9 @@
 (fn collect-mushroom [mushroom]
   (when (not= mushroom.state :collected)
     (set mushroom.state :collected)
-    (print (fennel.view mushroom))
-    (tset shroomdex mushroom.shroomidx :collected? true)
-    (print "collected:" mushroom.name)))
+    (when DEBUG
+      (print (fennel.view mushroom)))
+    (tset shroomdex mushroom.shroomidx :collected? true)))
 
 (fn run-collect-system [player entities]
   (each [key entity (pairs entities)]
@@ -266,13 +266,17 @@
                                     :width object.width
                                     :height object.height
                                     :text object.properties.text})
-      "mushroom" (table.insert mushrooms
-                               {:name object.name
-                                :x object.x
-                                :y object.y
-                                :width object.width
-                                :height object.height
-                                :shroomidx object.properties.shroomidx})
+      "mushroom" (let [idx object.properties.shroomidx]
+                   (table.insert mushrooms
+                                 {:name object.name
+                                  :x object.x
+                                  :y object.y
+                                  :width object.width
+                                  :height object.height
+                                  :state (if (. shroomdex idx :collected?)
+                                             :collected
+                                             :idle)
+                                  :shroomidx idx}))
       "portal" (table.insert portals {:name object.name
                                       :target object.properties.target
                                       :x object.x
