@@ -78,12 +78,12 @@
   <object id="5" name="Player" x="150" y="200" width="10" height="16"/>
  </objectgroup>
  <objectgroup id="6" name="items" opacity="0">
-  <object id="23" name="guide_1" type="guide" x="208" y="256" width="16" height="16">
+  <object id="23" name="guide_1" type="guide" x="192" y="240" width="48" height="32">
    <properties>
     <property name="text" value="Press 'X' to open your Shroomdex"/>
    </properties>
   </object>
-  <object id="24" name="guide_2" type="guide" x="496" y="256" width="16" height="16">
+  <object id="24" name="guide_2" type="guide" x="480" y="240" width="48" height="32">
    <properties>
     <property name="text" value="Go collect all the mushrooms!"/>
    </properties>
