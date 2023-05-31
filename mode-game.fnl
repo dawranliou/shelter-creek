@@ -5,7 +5,6 @@
 (local bump (require "lib/bump"))
 
 (var DEBUG false)
-(var shroomdex-mode? false)
 
 (local camera (Camera 0 0 2))
 (var player nil)
@@ -47,6 +46,41 @@
 (set animations.walk.left (doto (animations.walk.right:clone) (: :flipH)))
 (set animations.fall.left (doto (animations.fall.right:clone) (: :flipH)))
 
+
+(var shroomdex-mode? false)
+(var shroomdex-idx 1)
+(var shroomdex [{:name "twin shroom"
+                 :description "Grows in the middle of two identical trees"
+                 :quad (love.graphics.newQuad 0 0 16 16
+                                              (sprite:getWidth)
+                                              (sprite:getHeight))
+                 :collected? false}
+                {:name "sky shroom"
+                 :description "Found in the highest peak"
+                 :quad (love.graphics.newQuad 16 0 16 16
+                                              (sprite:getWidth)
+                                              (sprite:getHeight))
+                 :collected? false}
+                {:name "shroom 2"
+                 :description "asldkfja; a;slkdf ksjo iasd iasjdf;klas"
+                 :quad (love.graphics.newQuad 0 16 16 16
+                                              (sprite:getWidth)
+                                              (sprite:getHeight))
+                 :collected? false}
+                {:name "shroom 3"
+                 :description "asdifij;kj20i 2ek jajsd0 ij8 jijpa9s8djpf"
+                 :quad (love.graphics.newQuad 0 32 16 16
+                                              (sprite:getWidth)
+                                              (sprite:getHeight))
+                 :collected? false}
+                {:name "shroom 4"
+                 :description "asdkfj9 =d9asdija; 08 aosid fa8su"
+                 :quad (love.graphics.newQuad 0 48 16 16
+                                              (sprite:getWidth)
+                                              (sprite:getHeight))
+                 :collected? false}])
+(set _G.shroomdex shroomdex)
+
 (var scene "assets/map-cabin.lua")
 (var world (bump.newWorld 16))
 
@@ -83,6 +117,8 @@
 (fn collect-mushroom [mushroom]
   (when (not= mushroom.state :collected)
     (set mushroom.state :collected)
+    (print (fennel.view mushroom))
+    (tset shroomdex mushroom.shroomidx :collected? true)
     (print "collected:" mushroom.name)))
 
 (fn run-collect-system [player entities]
@@ -223,11 +259,13 @@
                                     :width object.width
                                     :height object.height
                                     :text object.properties.text})
-      "mushroom" (table.insert mushrooms {:name object.name
-                                          :x object.x
-                                          :y object.y
-                                          :width object.width
-                                          :height object.height})
+      "mushroom" (table.insert mushrooms
+                               {:name object.name
+                                :x object.x
+                                :y object.y
+                                :width object.width
+                                :height object.height
+                                :shroomidx object.properties.shroomidx})
       "portal" (table.insert portals {:name object.name
                                       :target object.properties.target
                                       :x object.x
@@ -247,7 +285,7 @@
 
 (fn draw [message]
   ;; (camera:attach)
-  (love.graphics.clear (/ 25 255) (/ 26 255) (/ 31 255))
+  (love.graphics.clear 0.0980 0.1020 0.1216)
   (love.graphics.setColor 1 1 1)
   (map:draw (- camera.x) (- camera.y) camera.scale camera.scale)
   (when active-dialog
@@ -255,17 +293,25 @@
     (love.graphics.draw sprite dialog-quad 45 20 0 3)
     (love.graphics.setColor 0 0 0)
     (love.graphics.printf active-dialog.text 90 60 100 :left 0 3))
-  (love.graphics.push)
-  (love.graphics.scale 3)
   (when shroomdex-mode?
     (love.graphics.setColor 0 0 0 0.95)
-    (love.graphics.rectangle :fill 0 0 screen-w screen-h)
+    (love.graphics.rectangle :fill 0 0 w h)
     (love.graphics.setColor 1 1 1)
-    (love.graphics.draw sprite shroomdex-quad 10 5)
-    (love.graphics.draw sprite left-quad 20 115)
-    (love.graphics.draw sprite right-quad 125 115)
-    )
-  (love.graphics.pop)
+    (love.graphics.draw sprite shroomdex-quad 20 20 0 3)
+    (when (< 1 shroomdex-idx)
+      (love.graphics.draw sprite left-quad 40 320 0 3))
+    (when (< shroomdex-idx (length shroomdex))
+      (love.graphics.draw sprite right-quad 390 320 0 3))
+    (let [shroom (. shroomdex shroomdex-idx)]
+      (love.graphics.setColor 0 0 0)
+      (love.graphics.print shroomdex-idx 100 80 0 3)
+      (love.graphics.printf shroom.name 100 180 60 :left 0 2)
+      (love.graphics.printf shroom.description 260 90 60 :left 0 2)
+      (love.graphics.setColor 0.2235 0.2078 0.2549)
+      (love.graphics.rectangle :fill 130 90 80 80)
+      (when (or shroom.collected? DEBUG)
+        (love.graphics.setColor 1 1 1)
+        (love.graphics.draw sprite shroom.quad 130 90 0 5))))
   (when DEBUG
     (love.graphics.setColor 1 0 0)
     (map:bump_draw (* -1 camera.x) (* -1 camera.y) camera.scale camera.scale)
@@ -310,8 +356,20 @@
 (fn keypressed [key set-mode]
   ;; (set-mode :mode-intro)
   ;;(love.event.quit)
+  (when shroomdex-mode?
+    (case key
+      "left" (when (< 1 shroomdex-idx)
+               (set shroomdex-idx (- shroomdex-idx 1)))
+      "a" (when (< 1 shroomdex-idx)
+            (set shroomdex-idx (- shroomdex-idx 1)))
+      "right" (when (< shroomdex-idx (length shroomdex))
+                (set shroomdex-idx (+ shroomdex-idx 1)))
+      "d" (when (< shroomdex-idx (length shroomdex))
+            (set shroomdex-idx (+ shroomdex-idx 1)))))
   (case key
     "x" (set shroomdex-mode? (not shroomdex-mode?))
+    "escape" (set shroomdex-mode? false)
+    ;; house-keeping
     "1" (set-zoom-to 1.5)
     "2" (set-zoom-to 2)
     "0" (set DEBUG (not DEBUG)))

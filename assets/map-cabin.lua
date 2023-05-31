@@ -289,7 +289,7 @@ return {
         },
         {
           id = 25,
-          name = "mushroom_1",
+          name = "twin mushroom",
           type = "mushroom",
           shape = "rectangle",
           x = 720,
@@ -298,7 +298,9 @@ return {
           height = 16,
           rotation = 0,
           visible = true,
-          properties = {}
+          properties = {
+            ["shroomidx"] = 1
+          }
         },
         {
           id = 28,

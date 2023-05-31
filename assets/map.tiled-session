@@ -49,7 +49,7 @@
         "spritesheet.tsx"
     ],
     "project": "map.tiled-project",
-    "property.type": "string",
+    "property.type": "int",
     "recentFiles": [
         "spritesheet.tsx",
         "cabin.tmx",
