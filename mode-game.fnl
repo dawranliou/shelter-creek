@@ -96,12 +96,16 @@
     (set guide.state :active)
     (print "guide:" guide.text)))
 
+(fn dismiss-guidance [guide]
+  (set guide.state :inactive))
+
 (fn run-guidance-system [player entities]
   (each [key entity (pairs entities)]
-    (when (bump.rect.detectCollision
+    (if (bump.rect.detectCollision
            player.x player.y player.width player.height
            entity.x entity.y entity.width entity.height)
-      (show-guidance entity))))
+        (show-guidance entity)
+        (dismiss-guidance entity))))
 
 (fn enter-portal [portal]
   (when (not= portal.state :entered)
