@@ -99,6 +99,13 @@
      (math.floor player.x)
      (math.floor player.y)
      0 1 1 (if (= player.dir :right) 13 10) 16)
+  (each [key shroom (pairs mushrooms)]
+    (when (not= shroom.state :collected)
+      (love.graphics.draw sprite
+                          (. shroomdex shroom.shroomidx :quad)
+                          (math.floor shroom.x)
+                          (math.floor shroom.y))))
+
   (when DEBUG
     (love.graphics.print player.state
                          (- (math.floor player.x) 5)
