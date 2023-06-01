@@ -22,7 +22,7 @@ $ make release
 
 * Devlog
 
-** <2023-05-26 Fri> Brain-storming ideas
+** <2023-05-26 Fri> Day 1: Brain-storming ideas
 
 Absolutely no code is done.  I know I want to do a platformer for the
 game jam since I've never made one before, but I struggled to figure
@@ -31,17 +31,17 @@ whole time doodling and brainstorming the ideas.  Eventually settled
 on the idea of making a platformer to find and collect mushrooms
 hidden in the forest.
 
-** <2023-05-27 Sat> Concept arts
+** <2023-05-27 Sat> Day 2: Concept arts
 
 Making some concept arts on my sketch book and Aseprite.  No a single
 line of code either.
 
-** <2023-05-29 Mon> Sprites and first map
+** <2023-05-29 Mon> Day 3: Sprites and first map
 
 Turning concept arts into sprites in Aseprite.  First time using Tiled
 map editor to piece together sprites into the first game map.
 
-** <2023-05-30 Tue> First line of code!
+** <2023-05-30 Tue> Day 4: First line of code!
 
 One of my personal goals in this game jam is to code as little as
 possible.  (And as dirty as possible.  More on this point later.)
@@ -61,13 +61,44 @@ roll back to the simplest because I couldn't get rid off a weird
 jittering problem on the player character.  Hope I can improve the
 camera movement in the future.
 
-** <2023-05-31 Wed> Game mechanics
+** <2023-05-31 Wed> Day 5: Game mechanics
 
-More coding today!  I've coded up naive implementations to:
+More coding today!  I coded up naive implementations to:
 - Showing guidance
 - Displaying the Shroomdex
 - Collecting mushrooms
 - Entering portal
+
+The day ended with a mojar bug that prevents reloading the same map.
+
+** <2023-06-01 Thu> Day 6: Second map
+
+Yesterday's bug was due to not clearing the collidable player object
+before loading the new map, with a new player spawning point.  Also
+spent some time tweaking to the layouts and increase the window size
+for aesthetic.
+
+Then I started working on the second map and found that I needed to
+implement some ad-hoc spawning logic.  There are 5 maps planned for
+this game and I felt falling behind the schedule.  Hopefully I'd cut
+some scope and submit the game on time.  With so many things I was
+tring for the first time (plus for personal reason that I need to
+submit the game earlier than the deadline), I kept feeling the time
+pressure.
+
+Nonetheless, I felt extremely proud of myself for juggling so well one
+of the dirtiest code I've written - with so many global states, so
+many side effects, so many unexplored dependencies, so many
+nomenclature errors, so much incidental complexities, etc..., I still
+had a pretty good grasp of the source code.  (Patting myself on the
+back.)  It's been 5 years for me to work with Clojure professionally,
+to embrace the Functional Programming doctrines, yet I was surviving
+this 100% imperative codebase.  I guess imperative code isn't bad - as
+long as I can fit all the code in my head.  And, to be honest, I think
+imperative code is a better fit for game programming than functional
+programming code.  However, I don't dare to use Object-Oriented
+Programming for game programming yet.  OOP still felt too wrong for
+me.
 
 * Credits and Licenses
 - Code by Daw-Ran Liou; licenced under [[file:license.txt][GPL-3.0]]
