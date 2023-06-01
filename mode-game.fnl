@@ -374,8 +374,8 @@
   )
 
 (fn clamp [x min max]
-  (or (when (< x min) min)
-      (when (< max x) max)
+  (or (when (< max x) max)
+      (when (< x min) min)
       x))
 
 (fn update [dt set-mode]
