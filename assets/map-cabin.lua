@@ -269,7 +269,7 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["text"] = "Press 'X' to open your Shroomdex"
+            ["text"] = "Press 'Z' to open your Shroomdex"
           }
         },
         {

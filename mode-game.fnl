@@ -204,7 +204,7 @@
   ;; Y
   (var target-y player.y)
   (when (and (not shroomdex-mode?)
-             (love.keyboard.isDown "space" "z")
+             (love.keyboard.isDown "space" "x")
              (not= prev-state :fall))
     (set player.v (- player.v 6)))
   ;; gravity
@@ -429,7 +429,7 @@
       "d" (when (< shroomdex-idx (length shroomdex))
             (set shroomdex-idx (+ shroomdex-idx 1)))))
   (case key
-    "x" (set shroomdex-mode? (not shroomdex-mode?))
+    "z" (set shroomdex-mode? (not shroomdex-mode?))
     "escape" (set shroomdex-mode? false)
     ;; house-keeping
     "1" (set-zoom-to 1.5)
