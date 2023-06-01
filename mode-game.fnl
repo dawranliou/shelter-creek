@@ -7,6 +7,12 @@
 (var DEBUG false)
 
 (var time 0)
+
+;; nil :in :out
+(var transition? nil)
+(var transition-to nil)
+(var transition-pct 0)
+
 (local camera (Camera 0 0 2))
 (var player nil)
 (var guides {})
@@ -166,7 +172,8 @@
     (set portal.state :entered)
     (print "entering:" portal.target)
     (let [target-map (. portal-location portal.target)]
-      (setup-scene target-map))))
+      (set transition-to target-map)
+      (set transition? :out))))
 
 (fn run-portal-system [player entities]
   (each [key entity (pairs entities)]
@@ -347,6 +354,9 @@
       (when (or shroom.collected? DEBUG)
         (love.graphics.setColor 1 1 1)
         (love.graphics.draw sprite shroom.quad 130 90 0 5))))
+  (when transition?
+    (love.graphics.setColor 0 0 0 transition-pct)
+    (love.graphics.rectangle :fill 0 0 w h))
   (when DEBUG
     (love.graphics.setColor 1 0 0)
     (map:bump_draw (* -1 camera.x) (* -1 camera.y) camera.scale camera.scale)
@@ -362,7 +372,17 @@
       x))
 
 (fn update [dt set-mode]
-  (map:update dt)
+  (case transition?
+    :out (do (set transition-pct (+ transition-pct 0.02))
+             (when (<= 1 transition-pct)
+               (setup-scene transition-to)
+               (set transition? :in)
+               (set transition-pct 1)))
+    :in (do (set transition-pct (- transition-pct 0.02))
+            (when (<= transition-pct 0)
+              (set transition? nil)
+              (set transition-pct 0)))
+    nil (map:update dt))
   (camera:lockX (clamp
                  (- player.x
                     (/ w camera.scale 2)
