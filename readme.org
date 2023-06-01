@@ -1,0 +1,78 @@
+* Shelter Creek
+
+"Shelter Creek" is a cozy puzzle-platformer made with [[https://love2d.org/][love2d]] and the
+[[https://fennel-lang.org/][fennel programming language]].  I made this game as my submission to the
+[[https://itch.io/jam/spring-lisp-game-jam-2023][Spring Lisp Game Jam 2023]].
+
+* Prerequisites
+
+- Install =love= on your system's path
+
+* Run
+
+#+begin_src bash
+$ make run
+#+end_src
+
+* Build
+
+#+begin_src bash
+$ make release
+#+end_src
+
+* Devlog
+
+** <2023-05-26 Fri> Brain-storming ideas
+
+Absolutely no code is done.  I know I want to do a platformer for the
+game jam since I've never made one before, but I struggled to figure
+out how to make an interesting platformer.  Ended up spending the
+whole time doodling and brainstorming the ideas.  Eventually settled
+on the idea of making a platformer to find and collect mushrooms
+hidden in the forest.
+
+** <2023-05-27 Sat> Concept arts
+
+Making some concept arts on my sketch book and Aseprite.  No a single
+line of code either.
+
+** <2023-05-29 Mon> Sprites and first map
+
+Turning concept arts into sprites in Aseprite.  First time using Tiled
+map editor to piece together sprites into the first game map.
+
+** <2023-05-30 Tue> First line of code!
+
+One of my personal goals in this game jam is to code as little as
+possible.  (And as dirty as possible.  More on this point later.)
+Instead of my minimalist approaches in my last two game jams where I
+coded almost everything necessary from scratch, I'm using:
+
+- [[https://github.com/karai17/Simple-Tiled-Implementation/][karai17/Simple-Tiled-Implementation]] to load and draw the map
+- [[https://github.com/kikito/bump.lua][kikito/bump.lua]] to handle the collision
+- [[https://github.com/vrld/hump][vrld/hump]]'s camera module for handling the camera movement
+- [[https://github.com/kikito/anim8][kikito/anim8]] for render animated sprites
+
+Gotta say the progress is quite significant.  I think I can sleep well
+with that.
+
+I ended up tweaking the camera movement for too long but eventually
+roll back to the simplest because I couldn't get rid off a weird
+jittering problem on the player character.  Hope I can improve the
+camera movement in the future.
+
+** <2023-05-31 Wed> Game mechanics
+
+More coding today!  I've coded up naive implementations to:
+- Showing guidance
+- Displaying the Shroomdex
+- Collecting mushrooms
+- Entering portal
+
+* Credits and Licenses
+- Code by Daw-Ran Liou; licenced under [[file:license.txt][GPL-3.0]]
+- Visual Art by Daw-Ran Liou; licenced under [[https://creativecommons.org/licenses/by-sa/4.0/][CC BY-SA 4.0]]
+- Font: [[https://fonts.google.com/specimen/Silkscreen][Silkscreen]] by Jason Kottke; licenced under [[https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL][Open Font License]]
+- Music TODO
+- SFX TODO
+
