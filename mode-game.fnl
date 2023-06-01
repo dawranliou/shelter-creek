@@ -37,6 +37,9 @@
 (local dialog-quad (love.graphics.newQuad (* 9 16) (* 2 16) (* 8 16) (* 4 16)
                                           (sprite:getWidth)
                                           (sprite:getHeight)))
+(local q-quad (love.graphics.newQuad 16 16 16 16
+                                     (sprite:getWidth)
+                                     (sprite:getHeight)))
 
 (local animations {:idle {:left nil
                           :right nil}
@@ -346,14 +349,18 @@
       (love.graphics.draw sprite right-quad 390 320 0 3))
     (let [shroom (. shroomdex shroomdex-idx)]
       (love.graphics.setColor 0 0 0)
-      (love.graphics.print shroomdex-idx 100 80 0 3)
-      (love.graphics.printf shroom.name 100 180 60 :left 0 2)
-      (love.graphics.printf shroom.description 260 90 60 :left 0 2)
+      (love.graphics.print (: "#%d" :format shroomdex-idx) 100 170 0 2)
+      (love.graphics.printf (if shroom.collected? shroom.name "?????")
+                            100 190 60 :left 0 2)
+      (love.graphics.printf shroom.description 260 80 60 :left 0 2)
       (love.graphics.setColor 0.2235 0.2078 0.2549)
-      (love.graphics.rectangle :fill 130 90 80 80)
+      (love.graphics.rectangle :fill 100 86 80 80)
+      (when (not shroom.collected?)
+        (love.graphics.setColor 1 1 1)
+        (love.graphics.draw sprite q-quad 100 86 0 5))
       (when (or shroom.collected? DEBUG)
         (love.graphics.setColor 1 1 1)
-        (love.graphics.draw sprite shroom.quad 130 90 0 5))))
+        (love.graphics.draw sprite shroom.quad 100 86 0 5))))
   (when transition?
     (love.graphics.setColor 0 0 0 transition-pct)
     (love.graphics.rectangle :fill 0 0 w h))
