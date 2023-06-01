@@ -6,12 +6,17 @@
 
 (var DEBUG false)
 
+(var time 0)
 (local camera (Camera 0 0 2))
 (var player nil)
 (var guides {})
 (var active-dialog nil)
 (var mushrooms {})
 (var portals {})
+(local portal-location
+       {:cabin "assets/map-cabin.lua"
+        ;; temporary for testing
+        :forest "assets/map-cabin.lua"})
 
 (local sprite (love.graphics.newImage "assets/spritesheet.png"))
 (local shroomdex-quad (love.graphics.newQuad 0 (* 9 16) (* 9 16) (* 6 16)
@@ -153,10 +158,15 @@
         (show-guidance entity)
         (dismiss-guidance entity))))
 
+;; for forward declaration
+(var setup-scene nil)
+
 (fn enter-portal [portal]
   (when (not= portal.state :entered)
     (set portal.state :entered)
-    (print "entering:" portal.target)))
+    (print "entering:" portal.target)
+    (let [target-map (. portal-location portal.target)]
+      (setup-scene target-map))))
 
 (fn run-portal-system [player entities]
   (each [key entity (pairs entities)]
@@ -220,79 +230,93 @@
       :else
       (: (. animations player.state player.dir) :update dt)))
 
-(fn setup-scene [scene-path]
-  (set scene scene-path)
-  (set world (bump.newWorld 16))
+(set setup-scene
+     (fn [scene-path]
+       ;; Cleanup entities
+       (set mushrooms [])
+       (set guides [])
+       (set portals [])
+       (when (and world player)
+         (world:remove player)
+         (set player nil))
+       (set world nil)
+       (set map nil)
 
-  (set w (love.graphics.getWidth))
-  (set h (love.graphics.getHeight))
-  (set screen-w (/ w camera.scale))
-  (set screen-h (/ h camera.scale))
-  (set map (sti scene-path ["bump"]))
-  (set _G.map map)
-  (set world-w (* map.width map.tilewidth))
-  (set world-h (* map.height map.tileheight))
-  (print "Res:" w h)
-  (print "Screen:" screen-w screen-h)
-  (print "World:" world-w world-h)
-  (map:bump_init world)
+       (print "Loading map:" scene-path)
+       (set scene scene-path)
+       (set world (bump.newWorld 16))
 
-  (each [key object (pairs map.objects) &until player]
-    (when (= object.name "Player")
-      (print "Player:" object.x object.y)
-      (set player {:sprite sprite
-                   :state :fall
-                   :dir :right
-                   :grounded? false
-                   :moving? false
-                   :jumps 0
-                   :animation {:idle nil
-                               :walk nil
-                               :fall nil}
-                   :width object.width
-                   :height object.height
-                   :v 0
-                   :x object.x
-                   :y object.y})
-      (set _G.player player)
-      (world:add player
-                 player.x player.y player.width player.height)))
+       (set w (love.graphics.getWidth))
+       (set h (love.graphics.getHeight))
+       (set screen-w (/ w camera.scale))
+       (set screen-h (/ h camera.scale))
+       (set map (sti scene-path ["bump"]))
+       (set _G.map map)
+       (set world-w (* map.width map.tilewidth))
+       (set world-h (* map.height map.tileheight))
+       (when DEBUG
+         (print "Res:" w h)
+         (print "Screen:" screen-w screen-h)
+         (print "World:" world-w world-h))
+       (map:bump_init world)
 
-  (each [key object (pairs map.objects)]
-    (case object.type
-      "guide" (table.insert guides {:name object.name
-                                    :x object.x
-                                    :y object.y
-                                    :width object.width
-                                    :height object.height
-                                    :text object.properties.text})
-      "mushroom" (let [idx object.properties.shroomidx]
-                   (table.insert mushrooms
-                                 {:name object.name
-                                  :x object.x
-                                  :y object.y
-                                  :width object.width
-                                  :height object.height
-                                  :state (if (. shroomdex idx :collected?)
-                                             :collected
-                                             :idle)
-                                  :shroomidx idx}))
-      "portal" (table.insert portals {:name object.name
-                                      :target object.properties.target
-                                      :x object.x
-                                      :y object.y
-                                      :width object.width
-                                      :height object.height})
-      _ :skip))
-  (set _G.mushrooms mushrooms)
-  (set _G.guides guides)
-  (set _G.portals portals)
+       (each [key object (pairs map.objects) &until player]
+         (when (= object.name "Player")
+           (set player {:sprite sprite
+                        :state :fall
+                        :dir :right
+                        :grounded? false
+                        :moving? false
+                        :jumps 0
+                        :animation {:idle nil
+                                    :walk nil
+                                    :fall nil}
+                        :width object.width
+                        :height object.height
+                        :v 0
+                        :x object.x
+                        :y object.y})
+           (set _G.player player)
+           (world:add player
+                      player.x player.y player.width player.height)))
+       (when DEBUG
+         (print "player:" (fennel.view player)))
 
-  (doto (map:addCustomLayer "sprites")
-    (tset :draw draw-sprites-layer)
-    (tset :update update-sprites-layer))
+       (each [key object (pairs map.objects)]
+         (case object.type
+           "guide" (table.insert guides {:name object.name
+                                         :x object.x
+                                         :y object.y
+                                         :width object.width
+                                         :height object.height
+                                         :text object.properties.text})
+           "mushroom" (let [idx object.properties.shroomidx]
+                        (table.insert mushrooms
+                                      {:name object.name
+                                       :x object.x
+                                       :y object.y
+                                       :width object.width
+                                       :height object.height
+                                       :state (if (. shroomdex idx :collected?)
+                                                  :collected
+                                                  :idle)
+                                       :shroomidx idx}))
+           "portal" (table.insert portals {:name object.name
+                                           :target object.properties.target
+                                           :x object.x
+                                           :y object.y
+                                           :width object.width
+                                           :height object.height})
+           _ :skip))
+       (set _G.mushrooms mushrooms)
+       (set _G.guides guides)
+       (set _G.portals portals)
 
-  (map:removeLayer "spawn point"))
+       (doto (map:addCustomLayer "sprites")
+         (tset :draw draw-sprites-layer)
+         (tset :update update-sprites-layer))
+
+       (map:removeLayer "spawn point")))
 
 (fn draw [message]
   ;; (camera:attach)
