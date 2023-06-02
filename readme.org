@@ -110,6 +110,28 @@ me.
 Spent another hour or two to do the cover image.  This was also the
 first time doing a digital/pixel art piece as large as this one.
 
+** <2023-06-02 Fri> Day 7: Map #3 and more art works
+
+I decided to start the day by creating the game page on itch.io and
+testing the release process.  Creating the game page then led to an
+hour of making the banner art work.  I was glad that I tested out the
+release process because it didn't work on my machine.  Sigh.  This
+could be related to my old 2015 11" MacBook Air.  I'll have to borrow
+another machine tomorrow when submitting the game.  Tomorrow would
+also be my last day to work on the game because I'd be traveling later
+this week.
+
+So, tomorrow is a big day.  I'll have to finish:
+- Adding music
+- Adding SFX
+- Implementing end game
+- Implementing puzzles for the rest 3 mushrooms
+
+And if I get the time, I'd like to finish
+- Prettier intro,
+- Mushroom animation,
+- Probably 10 other more things but I cannot recall now.
+
 * Credits and Licenses
 - Code by Daw-Ran Liou; licenced under [[file:license.txt][GPL-3.0]]
 - Visual Art by Daw-Ran Liou; licenced under [[https://creativecommons.org/licenses/by-sa/4.0/][CC BY-SA 4.0]]
