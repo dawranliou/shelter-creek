@@ -82,8 +82,8 @@
                                               (sprite:getWidth)
                                               (sprite:getHeight))
                  :collected? false}
-                {:name "shroom 3"
-                 :description "asdifij;kj20i 2ek jajsd0 ij8 jijpa9s8djpf"
+                {:name "shy shroom"
+                 :description "This variety is pretty shy. You need to be brave to find them."
                  :quad (love.graphics.newQuad 0 32 16 16
                                               (sprite:getWidth)
                                               (sprite:getHeight))
