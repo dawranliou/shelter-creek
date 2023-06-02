@@ -1,10 +1,12 @@
-* Shelter Creek
+[[file:assets/banner.png]]
 
-[[file:assets/cover-mid.png]]
+* Shelter Creek
 
 "Shelter Creek" is a cozy puzzle-platformer made with [[https://love2d.org/][love2d]] and the
 [[https://fennel-lang.org/][fennel programming language]].  I made this game as my submission to the
 [[https://itch.io/jam/spring-lisp-game-jam-2023][Spring Lisp Game Jam 2023]].
+
+[[file:assets/cover-mid.png]]
 
 * Prerequisites
 
