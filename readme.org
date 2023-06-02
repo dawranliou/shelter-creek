@@ -38,6 +38,9 @@ hidden in the forest.
 Making some concept arts on my sketch book and Aseprite.  No a single
 line of code either.
 
+Edit <2023-06-02 Fri>: Settled on this amazing color palette -
+[[https://lospec.com/palette-list/tangerine-noir][Tangerine Noir]] for the game.
+
 ** <2023-05-29 Mon> Day 3: Sprites and first map
 
 Turning concept arts into sprites in Aseprite.  First time using Tiled
@@ -102,10 +105,14 @@ programming code.  However, I don't dare to use Object-Oriented
 Programming for game programming yet.  OOP still felt too wrong for
 me.
 
+Spent another hour or two to do the cover image.  This was also the
+first time doing a digital/pixel art piece as large as this one.
+
 * Credits and Licenses
 - Code by Daw-Ran Liou; licenced under [[file:license.txt][GPL-3.0]]
 - Visual Art by Daw-Ran Liou; licenced under [[https://creativecommons.org/licenses/by-sa/4.0/][CC BY-SA 4.0]]
 - Font: [[https://fonts.google.com/specimen/Silkscreen][Silkscreen]] by Jason Kottke; licenced under [[https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL][Open Font License]]
+- Color palette: [[https://lospec.com/palette-list/tangerine-noir][Tangerine Noir]] by [[https://lospec.com/we][we]]
 - Music TODO
 - SFX TODO
 
