@@ -339,7 +339,7 @@
     (love.graphics.setColor 1 1 1)
     (love.graphics.draw sprite dialog-quad 45 20 0 4)
     (love.graphics.setColor 0 0 0)
-    (love.graphics.printf active-dialog.text 110 80 100 :left 0 4))
+    (love.graphics.printf active-dialog.text 110 80 120 :left 0 3))
   (when shroomdex-mode?
     (love.graphics.setColor 0 0 0 0.95)
     (love.graphics.rectangle :fill 0 0 w h)
