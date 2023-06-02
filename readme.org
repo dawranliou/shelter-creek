@@ -26,7 +26,7 @@ $ make release
 
 * Devlog
 
-** <2023-05-26 Fri> Day 1: Brain-storming ideas
+** <2023-05-26 Fri> Day 1: Brain-storming ideas (1 hr)
 
 Absolutely no code is done.  I know I want to do a platformer for the
 game jam since I've never made one before, but I struggled to figure
@@ -35,7 +35,7 @@ whole time doodling and brainstorming the ideas.  Eventually settled
 on the idea of making a platformer to find and collect mushrooms
 hidden in the forest.
 
-** <2023-05-27 Sat> Day 2: Concept arts
+** <2023-05-27 Sat> Day 2: Concept arts (1 hr)
 
 Making some concept arts on my sketch book and Aseprite.  No a single
 line of code either.
@@ -43,12 +43,12 @@ line of code either.
 Edit <2023-06-02 Fri>: Settled on this amazing color palette -
 [[https://lospec.com/palette-list/tangerine-noir][Tangerine Noir]] for the game.
 
-** <2023-05-29 Mon> Day 3: Sprites and first map
+** <2023-05-29 Mon> Day 3: Sprites and first map (2 hrs)
 
 Turning concept arts into sprites in Aseprite.  First time using Tiled
 map editor to piece together sprites into the first game map.
 
-** <2023-05-30 Tue> Day 4: First line of code!
+** <2023-05-30 Tue> Day 4: First line of code! (4 hrs)
 
 One of my personal goals in this game jam is to code as little as
 possible.  (And as dirty as possible.  More on this point later.)
@@ -68,7 +68,7 @@ roll back to the simplest because I couldn't get rid off a weird
 jittering problem on the player character.  Hope I can improve the
 camera movement in the future.
 
-** <2023-05-31 Wed> Day 5: Game mechanics
+** <2023-05-31 Wed> Day 5: Game mechanics (4 hrs)
 
 More coding today!  I coded up naive implementations to:
 - Showing guidance
@@ -78,7 +78,7 @@ More coding today!  I coded up naive implementations to:
 
 The day ended with a mojar bug that prevents reloading the same map.
 
-** <2023-06-01 Thu> Day 6: Second map
+** <2023-06-01 Thu> Day 6: Second map (4 hrs)
 
 Yesterday's bug was due to not clearing the collidable player object
 before loading the new map, with a new player spawning point.  Also
@@ -110,7 +110,7 @@ me.
 Spent another hour or two to do the cover image.  This was also the
 first time doing a digital/pixel art piece as large as this one.
 
-** <2023-06-02 Fri> Day 7: Map #3 and more art works
+** <2023-06-02 Fri> Day 7: Map #3 and more art works (2 hrs)
 
 I decided to start the day by creating the game page on itch.io and
 testing the release process.  Creating the game page then led to an
