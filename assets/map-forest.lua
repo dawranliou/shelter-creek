@@ -10,7 +10,7 @@ return {
   tilewidth = 16,
   tileheight = 16,
   nextlayerid = 5,
-  nextobjectid = 28,
+  nextobjectid = 31,
   properties = {},
   tilesets = {
     {
@@ -547,6 +547,21 @@ return {
           properties = {
             ["spawnpoint"] = 1
           }
+        },
+        {
+          id = 30,
+          name = "Player",
+          type = "",
+          shape = "rectangle",
+          x = 448,
+          y = 720,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["spawnpoint"] = 2
+          }
         }
       }
     },
@@ -580,6 +595,36 @@ return {
             ["spawnpoint"] = 2,
             ["target"] = "cabin"
           }
+        },
+        {
+          id = 28,
+          name = "portal2",
+          type = "portal",
+          shape = "rectangle",
+          x = 464,
+          y = 688,
+          width = 16,
+          height = 48,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["spawndir"] = "right",
+            ["spawnpoint"] = 1,
+            ["target"] = "cave"
+          }
+        },
+        {
+          id = 29,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 368,
+          y = 912,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {}
         }
       }
     }
