@@ -10,7 +10,7 @@ return {
   tilewidth = 16,
   tileheight = 16,
   nextlayerid = 6,
-  nextobjectid = 29,
+  nextobjectid = 30,
   properties = {},
   tilesets = {
     {
@@ -590,7 +590,22 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["text"] = "Someone can shaken up the whole cave when jumping on it."
+            ["text"] = "Someone can send the whole cave 'rocking' when st on it."
+          }
+        },
+        {
+          id = 29,
+          name = "rock shroom",
+          type = "mushroom",
+          shape = "rectangle",
+          x = 128,
+          y = 416,
+          width = 16,
+          height = 16,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["shroomidx"] = 3
           }
         }
       }

@@ -65,31 +65,31 @@
 (var shroomdex-mode? false)
 (var shroomdex-idx 1)
 (var shroomdex [{:name "twin shroom"
-                 :description "Grows in the middle of two identical trees"
+                 :description "Grows in the middle of two identical trees."
                  :quad (love.graphics.newQuad 0 0 16 16
                                               (sprite:getWidth)
                                               (sprite:getHeight))
                  :collected? false}
                 {:name "sky shroom"
-                 :description "Found in the highest peak"
+                 :description "Found in the highest peak in the forest of Shelter Creek."
                  :quad (love.graphics.newQuad 16 0 16 16
                                               (sprite:getWidth)
                                               (sprite:getHeight))
                  :collected? false}
-                {:name "shroom 2"
-                 :description "asldkfja; a;slkdf ksjo iasd iasjdf;klas"
+                {:name "rock shroom"
+                 :description "Usually found in the caves. They are a fan of rock n rolls. Researchers need to 'rock' pretty hard to lure them out."
                  :quad (love.graphics.newQuad 0 16 16 16
                                               (sprite:getWidth)
                                               (sprite:getHeight))
                  :collected? false}
                 {:name "shy shroom"
-                 :description "This variety is pretty shy. You need to be brave to find them."
+                 :description "This variety is pretty shy. Some researchers say you need to be 'brave' to find them."
                  :quad (love.graphics.newQuad 0 32 16 16
                                               (sprite:getWidth)
                                               (sprite:getHeight))
                  :collected? false}
-                {:name "shroom 4"
-                 :description "asdkfj9 =d9asdija; 08 aosid fa8su"
+                {:name "crowd shroom"
+                 :description "The most mythical shroom of all shrooms in shelter creek. They only show up near cabin when you collect all the other shrooms."
                  :quad (love.graphics.newQuad 0 48 16 16
                                               (sprite:getWidth)
                                               (sprite:getHeight))
@@ -354,7 +354,7 @@
       (love.graphics.print (: "#%d" :format shroomdex-idx) 120 190 0 3)
       (love.graphics.printf (if shroom.collected? shroom.name "?????")
                             120 220 60 :left 0 3)
-      (love.graphics.printf shroom.description 340 100 100 :left 0 2)
+      (love.graphics.printf shroom.description 340 100 80 :left 0 2)
       (love.graphics.setColor 0.2235 0.2078 0.2549)
       (love.graphics.rectangle :fill 120 108 80 80)
       (when (not shroom.collected?)

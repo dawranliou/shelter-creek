@@ -22,11 +22,11 @@
                 3,
                 6
             ],
-            "scale": 1.2245,
+            "scale": 2.3859,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 317.2723560636995,
-                "y": 289.0975908534096
+                "x": 104.15356888385935,
+                "y": 263.6321723458653
             }
         },
         "cabin.tmx#background": {
@@ -42,11 +42,11 @@
                 4,
                 3
             ],
-            "scale": 1.0306,
+            "scale": 1.8352,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 311.9542014360567,
-                "y": 399.7671259460508
+                "x": 136.49738448125547,
+                "y": 423.93199651264166
             }
         },
         "cave.tmx#background": {
@@ -81,10 +81,10 @@
                 3
             ],
             "scale": 0.5955,
-            "selectedLayer": 2,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 249.37027707808562,
-                "y": 381.1922753988245
+                "x": 104.95382031905962,
+                "y": 384.5507976490344
             }
         },
         "peak.tmx#background": {
@@ -113,7 +113,7 @@
         "spritesheet.tsx"
     ],
     "project": "map.tiled-project",
-    "property.type": "string",
+    "property.type": "int",
     "recentFiles": [
         "spritesheet.tsx",
         "cabin.tmx",

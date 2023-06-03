@@ -10,7 +10,7 @@ return {
   tilewidth = 16,
   tileheight = 16,
   nextlayerid = 7,
-  nextobjectid = 35,
+  nextobjectid = 36,
   properties = {},
   tilesets = {
     {
@@ -331,8 +331,24 @@ return {
           rotation = 0,
           visible = true,
           properties = {
+            ["spawndir"] = "right",
             ["spawnpoint"] = 1,
             ["target"] = "forest"
+          }
+        },
+        {
+          id = 35,
+          name = "crowd shroom",
+          type = "mushroom",
+          shape = "rectangle",
+          x = 96,
+          y = 256,
+          width = 16,
+          height = 16,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["shroomidx"] = 5
           }
         }
       }
