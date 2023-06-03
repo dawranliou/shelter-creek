@@ -111,6 +111,7 @@
   </object>
   <object id="35" name="crowd shroom" type="mushroom" x="96" y="256" width="16" height="16">
    <properties>
+    <property name="lastshroom" type="bool" value="true"/>
     <property name="shroomidx" type="int" value="5"/>
    </properties>
   </object>

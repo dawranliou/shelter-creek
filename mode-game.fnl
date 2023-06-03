@@ -172,6 +172,13 @@
           (when (= :hidden shroom.state)
             (set shroom.state :idle)))))))
 
+(fn run-last-shroom-system [mushrooms shroomdex]
+  (when (= 1 (length (icollect [i shroom (ipairs shroomdex)]
+                       (if (not shroom.collected?) shroom))))
+    (each [k shroom (pairs mushrooms)]
+      (when (= shroom.name "crowd shroom")
+        (set shroom.state :idle)))))
+
 (fn show-guidance [guide]
   (when (not= guide.state :active)
     (set guide.state :active)
@@ -262,6 +269,7 @@
     (set player.v 0))
 
   (run-shaker-system player shakers mushrooms)
+  (run-last-shroom-system mushrooms shroomdex)
   (run-collect-system player mushrooms)
   (run-guidance-system player guides)
   (run-portal-system player portals)
@@ -364,6 +372,7 @@
                                   :state (if
                                           (. shroomdex idx :collected?) :collected
                                           object.properties.shaker :hidden
+                                          object.properties.lastshroom :hidden
                                           :else :idle)
                                   :shroomidx idx}))
       "portal" (table.insert portals {:name object.name

@@ -348,6 +348,7 @@ return {
           rotation = 0,
           visible = true,
           properties = {
+            ["lastshroom"] = true,
             ["shroomidx"] = 5
           }
         }
