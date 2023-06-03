@@ -75,13 +75,13 @@
 (var shroomdex-mode? false)
 (var shroomdex-idx 1)
 (var shroomdex [{:name "twin shroom"
-                 :description "Grows in the middle of two identical trees."
+                 :description "This variety of mushroom grows in the middle of two identical trees."
                  :quad (love.graphics.newQuad 0 0 16 16
                                               (sprite:getWidth)
                                               (sprite:getHeight))
                  :collected? false}
                 {:name "sky shroom"
-                 :description "Found in the highest peak in the forest of Shelter Creek."
+                 :description "This variety likes hieights. They can be spotted in the highest point in the wilderness of Shelter Creek."
                  :quad (love.graphics.newQuad 16 0 16 16
                                               (sprite:getWidth)
                                               (sprite:getHeight))
@@ -99,7 +99,7 @@
                                               (sprite:getHeight))
                  :collected? false}
                 {:name "crowd shroom"
-                 :description "The most mythical shroom of all shrooms in shelter creek. They only show up near cabin when you collect all the other shrooms."
+                 :description "Legend says they only show up near cabin when you collect all the other shrooms."
                  :quad (love.graphics.newQuad 0 48 16 16
                                               (sprite:getWidth)
                                               (sprite:getHeight))
@@ -202,7 +202,8 @@
 (fn enter-portal [portal]
   (when (not= portal.state :entered)
     (set portal.state :entered)
-    (print "entering:" portal.target)
+    (when DEBUG
+      (print "entering:" portal.target))
     (let [target-map (. portal-location portal.target)
           spawn-point portal.spawn-point
           spawn-dir portal.spawn-dir]
@@ -289,15 +290,17 @@
       :else
       (: (. animations player.state player.dir) :update dt)))
 
-(fn setup-scene [scene-path spawn-point spawn-dir restart?]
-  (when restart?
-    (set end-game-sequence? false)
-    (set end-game-phase nil)
-    (set end-game-timer 0)
-    (set time 0)
-    (each [k shroom (pairs shroomdex)]
-      (set shroom.collected? false)))
+(fn reset-progress []
+  (set end-game-sequence? false)
+  (set end-game-phase nil)
+  (set end-game-timer 0)
+  (set time 0)
+  (set shroomdex-idx 1)
+  (set shroomdex-mode? false)
+  (each [k shroom (pairs shroomdex)]
+    (set shroom.collected? false)))
 
+(fn setup-scene [scene-path spawn-point spawn-dir]
   ;; Cleanup entities
   (set mushrooms [])
   (set guides [])
@@ -310,7 +313,8 @@
   (set world nil)
   (set map nil)
 
-  (print "Loading map:" scene-path)
+  (when DEBUG
+    (print "Loading map:" scene-path))
   (set scene scene-path)
   (set world (bump.newWorld 16))
 
@@ -419,7 +423,7 @@
       (love.graphics.setColor 0 0 0)
       (love.graphics.print (: "#%d" :format shroomdex-idx) 120 190 0 3)
       (love.graphics.printf (if shroom.collected? shroom.name "?????")
-                            120 220 60 :left 0 3)
+                            120 220 50 :left 0 3)
       (love.graphics.printf shroom.description 340 100 80 :left 0 2)
       (love.graphics.setColor 0.2235 0.2078 0.2549)
       (love.graphics.rectangle :fill 120 108 80 80)
@@ -514,6 +518,10 @@
     (print "World:" world-w world-h))
   )
 
+(fn instant-win []
+  (each [k v (pairs shroomdex)]
+    (set v.collected? true)))
+
 (fn keypressed [key set-mode]
   ;; (set-mode :mode-intro)
   ;;(love.event.quit)
@@ -533,16 +541,23 @@
   (case key
     "z" (set shroomdex-mode? (not shroomdex-mode?))
     "escape" (set shroomdex-mode? false)
-    ;; house-keeping
-    "1" (set-zoom-to 1)
-    "2" (set-zoom-to 2)
     "0" (set DEBUG (not DEBUG)))
+  (when DEBUG
+    (case key
+      ;; house-keeping
+      "1" (set-zoom-to 1)
+      "2" (set-zoom-to 2)
+      "3" (instant-win)
+      "4" (set-mode :mode-intro)
+      "5" (set-mode :mode-ending)))
   )
 
 ;; side effect on load
 (love.graphics.setNewFont "assets/Silkscreen-Regular.ttf" 8)
-(setup-scene "assets/map-cabin.lua" 1 :right true)
+(reset-progress)
+(setup-scene "assets/map-cabin.lua" 1 :right)
 
-{: draw
+{:activate reset-progress
+ : draw
  : update
  : keypressed}

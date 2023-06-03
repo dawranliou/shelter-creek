@@ -531,7 +531,7 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["text"] = "Almost there! (It's a lie.)"
+            ["text"] = "Almost there! (That's a lie.)"
           }
         },
         {
@@ -546,7 +546,7 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["text"] = "At this altitude, sometimes people see illusions, such as the mushroom to the right.)"
+            ["text"] = "At this altitude, sometimes people see illusions, such as the mushroom to your right.)"
           }
         },
         {

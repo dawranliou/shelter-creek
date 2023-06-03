@@ -15,8 +15,8 @@ Curious mushroom varieties grow in the solitary forest of "Shelter
 Creek."  Never has anyone in history seen and documented all those
 mushrooms until now.
 
-You are a researcher - an explorer - stepping into the forest,
-surrounded by all its wilderness.  Your wisdom, and your bravery, are
+You are a researcher - an explorer - stepping into Shelter Creek,
+surrounded by all its wilderness.  Your wisdom and your bravery, are
 all you need.  There is only one goal.  Find all the mushrooms.
 #+end_quote
 

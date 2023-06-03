@@ -740,7 +740,7 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["text"] = "The forest of Shelter Creek is a pretty big forest. Don't get lost!  Tip: press 'x' to jump."
+            ["text"] = "The wilderness of Shelter Creek is a pretty big area. Don't get lost! Tip: press 'x' to jump."
           }
         },
         {
@@ -787,7 +787,7 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["text"] = "Some says a leap of faith requires bravery."
+            ["text"] = "Some says a leap of faith requires 'bravery'."
           }
         }
       }

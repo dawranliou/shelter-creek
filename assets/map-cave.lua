@@ -560,7 +560,7 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["text"] = "As you can probably tell, this is a cave."
+            ["text"] = "As you probably can (or cannot) tell, this is a cave."
           }
         },
         {
@@ -575,7 +575,7 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["text"] = "Watch your step! Moving forward is the weakest spot of the cave."
+            ["text"] = "Watch your steps! The area forward is the weakest spot of the cave."
           }
         },
         {
@@ -590,7 +590,7 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["text"] = "Someone can send the whole cave 'rocking' when st on it."
+            ["text"] = "Someone can send the whole cave 'rocking' when stepping on it."
           }
         },
         {

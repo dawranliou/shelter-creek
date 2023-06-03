@@ -283,7 +283,7 @@
   </object>
   <object id="31" name="guide" type="guide" x="96" y="608" width="48" height="32">
    <properties>
-    <property name="text" value="The forest of Shelter Creek is a pretty big forest. Don't get lost!  Tip: press 'x' to jump."/>
+    <property name="text" value="The wilderness of Shelter Creek is a pretty big area. Don't get lost! Tip: press 'x' to jump."/>
    </properties>
   </object>
   <object id="32" name="shy shroom" type="mushroom" x="16" y="336" width="16" height="16">
@@ -300,7 +300,7 @@
   </object>
   <object id="37" name="guide 2" type="guide" x="192" y="144" width="48" height="32">
    <properties>
-    <property name="text" value="Some says a leap of faith requires bravery."/>
+    <property name="text" value="Some says a leap of faith requires 'bravery'."/>
    </properties>
   </object>
  </objectgroup>

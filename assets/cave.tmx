@@ -195,17 +195,17 @@
   </object>
   <object id="25" name="guide 1" type="guide" x="96" y="240" width="48" height="32">
    <properties>
-    <property name="text" value="As you can probably tell, this is a cave."/>
+    <property name="text" value="As you probably can (or cannot) tell, this is a cave."/>
    </properties>
   </object>
   <object id="26" name="guide 2" type="guide" x="352" y="384" width="48" height="32">
    <properties>
-    <property name="text" value="Watch your step! Moving forward is the weakest spot of the cave."/>
+    <property name="text" value="Watch your steps! The area forward is the weakest spot of the cave."/>
    </properties>
   </object>
   <object id="27" name="guide 3" type="guide" x="288" y="384" width="48" height="32">
    <properties>
-    <property name="text" value="Someone can send the whole cave 'rocking' when st on it."/>
+    <property name="text" value="Someone can send the whole cave 'rocking' when stepping on it."/>
    </properties>
   </object>
   <object id="29" name="rock shroom" type="mushroom" x="128" y="416" width="16" height="16">
