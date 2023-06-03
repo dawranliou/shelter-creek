@@ -6,9 +6,12 @@
 
 (var DEBUG false)
 
+(var end-game-sequence? false)
+(var end-game-phase nil)
+(var end-game-timer 0)
 (var time 0)
 
-;; nil :in :out
+;; nil :in :out :end-game
 (var transition? nil)
 (var transition-to nil)
 (var transition-pct 0)
@@ -185,6 +188,17 @@
            entity.x entity.y entity.width entity.height)
       (enter-portal entity))))
 
+(fn run-check-end-game-system []
+  (when (not end-game-sequence?)
+    (var win? true)
+    (each [key shroom (pairs shroomdex) &until (= win? false)]
+      (when (not shroom.collected?)
+        (set win? false)))
+    (when win?
+      (set transition? :end-game)
+      (set transition-pct 0)
+      (set end-game-sequence? true))))
+
 (fn update-sprites-layer [self dt]
   (local prev-state player.state)
 
@@ -192,11 +206,15 @@
 
   ;; X
   (set player.moving? false)
-  (when (and (not shroomdex-mode?) (love.keyboard.isDown "left" "a"))
+  (when (and (not shroomdex-mode?)
+             (not end-game-sequence?)
+             (love.keyboard.isDown "left" "a"))
     (set player.dir :left)
     (set player.moving? true)
     (set target-x (- target-x 2)))
-  (when (and (not shroomdex-mode?) (love.keyboard.isDown "right" "d"))
+  (when (and (not shroomdex-mode?)
+             (not end-game-sequence?)
+             (love.keyboard.isDown "right" "d"))
     (set player.dir :right)
     (set player.moving? true)
     (set target-x (+ target-x 2)))
@@ -227,6 +245,7 @@
   (run-collect-system player mushrooms)
   (run-guidance-system player guides)
   (run-portal-system player portals)
+  (run-check-end-game-system mushrooms)
 
   ;; animation state
   (if (not player.grounded?) (set player.state :fall)
@@ -241,6 +260,13 @@
       (: (. animations player.state player.dir) :update dt)))
 
 (fn setup-scene [scene-path spawn-point spawn-dir]
+  (set end-game-sequence? false)
+  (set end-game-phase nil)
+  (set end-game-timer 0)
+  (set time 0)
+  (each [k shroom (pairs shroomdex)]
+    (set shroom.collected? false))
+
   ;; Cleanup entities
   (set mushrooms [])
   (set guides [])
@@ -340,7 +366,7 @@
     (love.graphics.draw sprite dialog-quad 45 20 0 4)
     (love.graphics.setColor 0 0 0)
     (love.graphics.printf active-dialog.text 110 80 120 :left 0 3))
-  (when shroomdex-mode?
+  (when (or shroomdex-mode? (= end-game-phase :review))
     (love.graphics.setColor 0 0 0 0.95)
     (love.graphics.rectangle :fill 0 0 w h)
     (love.graphics.setColor 1 1 1)
@@ -363,9 +389,19 @@
       (when (or shroom.collected? DEBUG)
         (love.graphics.setColor 1 1 1)
         (love.graphics.draw sprite shroom.quad 120 108 0 5))))
+  (when (= end-game-phase :review)
+    (love.graphics.printf "To continue, press 'x'"
+                          0 500 (/ w 3) :center 0 3))
   (when transition?
     (love.graphics.setColor 0 0 0 transition-pct)
     (love.graphics.rectangle :fill 0 0 w h))
+  (when (= end-game-phase :congrats)
+    (love.graphics.setColor 1 1 1)
+    (love.graphics.printf "Congratulations! You've found all the mushrooms!"
+                          0 200 (/ w 3) :center 0 3)
+    (when (< 4 end-game-timer)
+      (love.graphics.printf "Here's the complete shroomdex"
+                            0 300 (/ w 3) :center 0 3)))
   (when DEBUG
     (love.graphics.setColor 1 0 0)
     (map:bump_draw (* -1 camera.x) (* -1 camera.y) camera.scale camera.scale)
@@ -382,6 +418,15 @@
 
 (fn update [dt set-mode]
   (case transition?
+    :end-game (do (set transition-pct (+ transition-pct 0.01))
+                  (when (<= 1 transition-pct)
+                    (set transition-pct 1))
+                  (set end-game-timer (+ end-game-timer dt))
+                  (if
+                   (< end-game-timer 2) (set end-game-phase :phase-out)
+                   (< end-game-timer 8) (set end-game-phase :congrats)
+                   :else (do (set end-game-phase :review)
+                             (set transition? nil))))
     :out (do (set transition-pct (+ transition-pct 0.02))
              (when (<= 1 transition-pct)
                (setup-scene (unpack transition-to))
@@ -420,7 +465,7 @@
 (fn keypressed [key set-mode]
   ;; (set-mode :mode-intro)
   ;;(love.event.quit)
-  (when shroomdex-mode?
+  (when (or shroomdex-mode? end-game-sequence?)
     (case key
       "left" (when (< 1 shroomdex-idx)
                (set shroomdex-idx (- shroomdex-idx 1)))
@@ -430,6 +475,9 @@
                 (set shroomdex-idx (+ shroomdex-idx 1)))
       "d" (when (< shroomdex-idx (length shroomdex))
             (set shroomdex-idx (+ shroomdex-idx 1)))))
+  (when end-game-sequence?
+    (case key
+      "x" (set-mode :mode-ending)))
   (case key
     "z" (set shroomdex-mode? (not shroomdex-mode?))
     "escape" (set shroomdex-mode? false)
