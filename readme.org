@@ -8,6 +8,13 @@
 
 [[file:assets/cover-mid.png]]
 
+* Screenshots
+
+[[file:screenshots/2.png]]
+[[file:screenshots/4.png]]
+[[file:screenshots/5.png]]
+[[file:screenshots/7.png]]
+
 * Prerequisites
 
 - Install =love= on your system's path
@@ -132,6 +139,8 @@ And if I get the time, I'd like to finish
 - Mushroom animation,
 - Improve jump control (cayote time, press-and-hold)
 - Probably 10 other more things but I cannot recall now.
+
+** <2023-06-03 Sat> Day 8: Final sprint to the finish line
 
 * Credits and Licenses
 - Code by Daw-Ran Liou; licenced under [[file:license.txt][GPL-3.0]]
