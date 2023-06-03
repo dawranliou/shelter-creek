@@ -148,6 +148,7 @@
 
 (fn collect-mushroom [mushroom]
   (when (not= mushroom.state :collected)
+    (music.sfx :collect)
     (set mushroom.state :collected)
     (when DEBUG
       (print (fennel.view mushroom)))
