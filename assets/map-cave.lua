@@ -10,7 +10,7 @@ return {
   tilewidth = 16,
   tileheight = 16,
   nextlayerid = 6,
-  nextobjectid = 30,
+  nextobjectid = 31,
   properties = {},
   tilesets = {
     {
@@ -605,8 +605,22 @@ return {
           rotation = 0,
           visible = true,
           properties = {
+            ["shaker"] = true,
             ["shroomidx"] = 3
           }
+        },
+        {
+          id = 30,
+          name = "shaker",
+          type = "shaker",
+          shape = "rectangle",
+          x = 96,
+          y = 431,
+          width = 176,
+          height = 1,
+          rotation = 0,
+          visible = true,
+          properties = {}
         }
       }
     },

@@ -113,7 +113,7 @@
         "spritesheet.tsx"
     ],
     "project": "map.tiled-project",
-    "property.type": "int",
+    "property.type": "bool",
     "recentFiles": [
         "spritesheet.tsx",
         "cabin.tmx",

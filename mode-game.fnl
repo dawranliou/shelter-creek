@@ -17,11 +17,17 @@
 (var transition-pct 0)
 
 (local camera (Camera 0 0 2))
+(var camera-shake-timer 0)
+(var camera-shake-x 0)
+(var camera-shake-y 0)
 (var player nil)
 (var guides {})
 (var active-dialog nil)
 (var mushrooms {})
 (var portals {})
+(var shakers [])
+(var shake-count 0)
+
 (local portal-location
        {:cabin "assets/map-cabin.lua"
         :forest "assets/map-forest.lua"
@@ -118,7 +124,7 @@
      (math.floor player.y)
      0 1 1 (if (= player.dir :right) 13 10) 16)
   (each [key shroom (pairs mushrooms)]
-    (when (not= shroom.state :collected)
+    (when (= shroom.state :idle)
       (love.graphics.draw sprite
                           (. shroomdex shroom.shroomidx :quad)
                           (math.floor shroom.x)
@@ -148,10 +154,23 @@
 
 (fn run-collect-system [player entities]
   (each [key entity (pairs entities)]
+    (when (and (= :idle entity.state)
+               (bump.rect.detectCollision
+                player.x player.y player.width player.height
+                entity.x entity.y entity.width entity.height))
+      (collect-mushroom entity))))
+
+(fn run-shaker-system [player shakers mushrooms]
+  (each [key shaker (pairs shakers)]
     (when (bump.rect.detectCollision
            player.x player.y player.width player.height
-           entity.x entity.y entity.width entity.height)
-      (collect-mushroom entity))))
+           shaker.x shaker.y shaker.width shaker.height)
+      (set camera-shake-timer 0.5)
+      (set shake-count (+ 1 shake-count))
+      (when (< 200 shake-count)
+        (each [key shroom (pairs mushrooms)]
+          (when (= :hidden shroom.state)
+            (set shroom.state :idle)))))))
 
 (fn show-guidance [guide]
   (when (not= guide.state :active)
@@ -242,6 +261,7 @@
   (when player.grounded?
     (set player.v 0))
 
+  (run-shaker-system player shakers mushrooms)
   (run-collect-system player mushrooms)
   (run-guidance-system player guides)
   (run-portal-system player portals)
@@ -259,18 +279,21 @@
       :else
       (: (. animations player.state player.dir) :update dt)))
 
-(fn setup-scene [scene-path spawn-point spawn-dir]
-  (set end-game-sequence? false)
-  (set end-game-phase nil)
-  (set end-game-timer 0)
-  (set time 0)
-  (each [k shroom (pairs shroomdex)]
-    (set shroom.collected? false))
+(fn setup-scene [scene-path spawn-point spawn-dir restart?]
+  (when restart?
+    (set end-game-sequence? false)
+    (set end-game-phase nil)
+    (set end-game-timer 0)
+    (set time 0)
+    (each [k shroom (pairs shroomdex)]
+      (set shroom.collected? false)))
 
   ;; Cleanup entities
   (set mushrooms [])
   (set guides [])
   (set portals [])
+  (set shakers [])
+  (set shake-count 0)
   (when (and world player)
     (world:remove player)
     (set player nil))
@@ -320,6 +343,11 @@
 
   (each [key object (pairs map.objects)]
     (case object.type
+      "shaker" (table.insert shakers {:name object.name
+                                      :x object.x
+                                      :y object.y
+                                      :width object.width
+                                      :height object.height})
       "guide" (table.insert guides {:name object.name
                                     :x object.x
                                     :y object.y
@@ -333,9 +361,10 @@
                                   :y object.y
                                   :width object.width
                                   :height object.height
-                                  :state (if (. shroomdex idx :collected?)
-                                             :collected
-                                             :idle)
+                                  :state (if
+                                          (. shroomdex idx :collected?) :collected
+                                          object.properties.shaker :hidden
+                                          :else :idle)
                                   :shroomidx idx}))
       "portal" (table.insert portals {:name object.name
                                       :target object.properties.target
@@ -437,16 +466,23 @@
               (set transition? nil)
               (set transition-pct 0)))
     nil (map:update dt))
+  (when (< 0 camera-shake-timer)
+    (set camera-shake-timer (- camera-shake-timer dt))
+    (set camera-shake-x (love.math.random 5))
+    (set camera-shake-y (love.math.random 5)))
   (camera:lockX (clamp
                  (- player.x
                     (/ w camera.scale 2)
+                    camera-shake-x
                     ;; (if (= player.dir :right) -10 10)
                     )
                  0 (- world-w screen-w))
                 ;; (Camera.smooth.damped 10)
                 )
   (camera:lockY (clamp
-                 (- player.y (/ h camera.scale 2))
+                 (- player.y
+                    (/ h camera.scale 2)
+                    camera-shake-y)
                  0 (- world-h screen-h))
                 ;; (Camera.smooth.damped 10)
                 ))
@@ -489,7 +525,7 @@
 
 ;; side effect on load
 (love.graphics.setNewFont "assets/Silkscreen-Regular.ttf" 8)
-(setup-scene "assets/map-cabin.lua" 1 :right)
+(setup-scene "assets/map-cabin.lua" 1 :right true)
 
 {: draw
  : update
