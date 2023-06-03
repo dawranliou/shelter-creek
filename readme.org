@@ -16,7 +16,7 @@ Creek."  Never has anyone in history seen and documented all those
 mushrooms until now.
 
 You are a researcher - an explorer - stepping into Shelter Creek,
-surrounded by all its wilderness.  Your wisdom and your bravery, are
+surrounded by all its wilderness.  Your wisdom and your bravery are
 all you need.  There is only one goal.  Find all the mushrooms.
 #+end_quote
 
@@ -152,17 +152,31 @@ And if I get the time, I'd like to finish
 - Improve jump control (cayote time, press-and-hold)
 - Probably 10 other more things but I cannot recall now.
 
-** <2023-06-03 Sat> Day 8: Final sprint to the finish line
+** <2023-06-03 Sat> Day 8: Final sprint to the finish line (5 hrs)
+
+Stumbling through the finish line.  This was my last day of
+development before the Game Jam submission.  I had a major issue to
+build the executables that got me felt pretty devastated but was able
+to find a workaround after an hour.  Sorry Linux gamers, I don't have
+the AppImage build for you yet.  You'll have to download the love2d
+executable to run the .love file.
+
+I don't think I complete anything in my good-to-have list from
+yesterday.  But I manage to make a playable game.  For that I felt
+extremely proud of.  Again, I didn't feel well-prepared coming into
+this game jam, even though this was my third jam.
+
+Hope you enjoy playing!
 
 * Credits and Licenses
-- Code by Daw-Ran Liou; licenced under [[file:license.txt][GPL-3.0]]
-- Visual Art by Daw-Ran Liou; licenced under [[https://creativecommons.org/licenses/by-sa/4.0/][CC BY-SA 4.0]]
-- Font: [[https://fonts.google.com/specimen/Silkscreen][Silkscreen]] by Jason Kottke; licenced under [[https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL][Open Font License]]
+- Code by Daw-Ran Liou; licensed under [[file:license.txt][GPL-3.0]]
+- Visual Art by Daw-Ran Liou; licensed under [[https://creativecommons.org/licenses/by-sa/4.0/][CC BY-SA 4.0]]
+- Font: [[https://fonts.google.com/specimen/Silkscreen][Silkscreen]] by Jason Kottke; licensed under [[https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL][Open Font License]]
 - Color palette: [[https://lospec.com/palette-list/tangerine-noir][Tangerine Noir]] by [[https://lospec.com/we][we]]
 - Music:
   - [[https://opengameart.org/content/forest-02][Forest 02]] by Beau Buckley; licensed under [[https://creativecommons.org/licenses/by-sa/4.0/][CC BY-SA 4.0]]
   - [[https://opengameart.org/content/cave-01][Cave 01]] by Beau Buckley; licensed under [[https://creativecommons.org/licenses/by-sa/4.0/][CC BY-SA 4.0]]
-- SFX by Daw-Ran Liou; licenced under [[https://creativecommons.org/licenses/by-sa/4.0/][CC BY-SA 4.0]]
+- SFX by Daw-Ran Liou; licensed under [[https://creativecommons.org/licenses/by-sa/4.0/][CC BY-SA 4.0]]
 - Software used for creating this game:
   - [[https://aseprite.org/][Aseprite]] for creating all the visual arts
   - [[https://www.mapeditor.org/][Tiled]] for creating the levels/maps
