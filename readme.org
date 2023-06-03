@@ -140,6 +140,10 @@ And if I get the time, I'd like to finish
 - Color palette: [[https://lospec.com/palette-list/tangerine-noir][Tangerine Noir]] by [[https://lospec.com/we][we]]
 - Music:
   - [[https://opengameart.org/content/forest-02][Forest 02]] by Beau Buckley; licensed under [[https://creativecommons.org/licenses/by-sa/4.0/][CC BY-SA 4.0]]
-  - [[https://opengameart.org/content/cave-01][Cave 01]] by Beau Buckley; licensed under [[https://creativecommons.org/licenses/by-sa/4.0/][CC BY-SA 4.0]] 
-- SFX TODO
-
+  - [[https://opengameart.org/content/cave-01][Cave 01]] by Beau Buckley; licensed under [[https://creativecommons.org/licenses/by-sa/4.0/][CC BY-SA 4.0]]
+- SFX by Daw-Ran Liou; licenced under [[https://creativecommons.org/licenses/by-sa/4.0/][CC BY-SA 4.0]]
+- Software used for creating this game:
+  - [[https://aseprite.org/][Aseprite]] for creating all the visual arts
+  - [[https://www.mapeditor.org/][Tiled]] for creating the levels/maps
+  - [[https://1bitdragon.com/][1BITDRAGON]] for creating the SFX
+  - Emacs for all the coding part

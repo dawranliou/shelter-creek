@@ -14,7 +14,7 @@
   (love.graphics.printf "Code: Daw-Ran Liou" 0 180 (/ w 3) :center 0 3)
   (love.graphics.printf "Art: Daw-Ran Liou" 0 210 (/ w 3) :center 0 3)
   (love.graphics.printf "Music: Beau Buckley" 0 240 (/ w 3) :center 0 3)
-  (love.graphics.printf "SFX: TODO" 0 270 (/ w 3) :center 0 3)
+  (love.graphics.printf "SFX: Daw-Ran Liou" 0 270 (/ w 3) :center 0 3)
 
   (love.graphics.printf "The end" 0 350 (/ w 3) :center 0 3)
 
