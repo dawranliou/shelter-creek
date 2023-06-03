@@ -9,13 +9,10 @@
                :cave cave})
 
 (fn play-track [key]
-  (let [track (. tracks key)
-        other-tracks (icollect [k t (pairs tracks)]
-                       (if (not= k key) t))]
-    (each [_ t (ipairs other-tracks)]
-      (love.audio.stop t))
-    (when (not (track:isPlaying))
-      (love.audio.play track))))
+  (each [k t (pairs tracks)]
+    (if (= k key)
+        (when (not (t:isPlaying)) (love.audio.play t))
+        (love.audio.stop t))))
 
 (fn stop-all-tracks []
   (each [_ t (pairs tracks)]
