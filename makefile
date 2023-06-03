@@ -1,4 +1,4 @@
-VERSION=1.0.0
+VERSION=1.0.1
 LOVE_VERSION=11.4
 NAME="shelter-creek"
 ITCH_ACCOUNT=dawranliou
