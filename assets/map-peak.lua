@@ -516,7 +516,7 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["text"] = "The trail ahead leads to the summit"
+            ["text"] = "The trail ahead leads to the summit."
           }
         },
         {
@@ -531,7 +531,7 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["text"] = "Almost there!"
+            ["text"] = "Almost there! (It's a lie.)"
           }
         },
         {
@@ -546,7 +546,7 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["text"] = "At this altitude, sometimes people see illusions."
+            ["text"] = "At this altitude, sometimes people see illusions, such as the mushroom to the right.)"
           }
         },
         {
@@ -576,7 +576,7 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["text"] = "Unfortunately, this is not the highest point"
+            ["text"] = "Unfortunately, this is not the highest point. Keep searching!"
           }
         }
       }

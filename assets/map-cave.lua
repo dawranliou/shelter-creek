@@ -10,7 +10,7 @@ return {
   tilewidth = 16,
   tileheight = 16,
   nextlayerid = 6,
-  nextobjectid = 28,
+  nextobjectid = 29,
   properties = {},
   tilesets = {
     {
@@ -258,9 +258,9 @@ return {
           type = "",
           shape = "rectangle",
           x = 608,
-          y = 192,
+          y = 0,
           width = 32,
-          height = 288,
+          height = 480,
           rotation = 0,
           visible = true,
           properties = {
@@ -401,6 +401,19 @@ return {
           properties = {
             ["collidable"] = true
           }
+        },
+        {
+          id = 28,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 0,
+          y = 0,
+          width = 1,
+          height = 352,
+          rotation = 0,
+          visible = true,
+          properties = {}
         }
       }
     },
@@ -577,7 +590,7 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["text"] = "Someone can shaken up the whole cave when stepping on it."
+            ["text"] = "Someone can shaken up the whole cave when jumping on it."
           }
         }
       }

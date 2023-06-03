@@ -177,17 +177,17 @@
   </object>
   <object id="20" name="guide 1" type="guide" x="80" y="368" width="48" height="32">
    <properties>
-    <property name="text" value="The trail ahead leads to the summit"/>
+    <property name="text" value="The trail ahead leads to the summit."/>
    </properties>
   </object>
   <object id="21" name="guide 2" type="guide" x="288" y="352" width="48" height="32">
    <properties>
-    <property name="text" value="Almost there!"/>
+    <property name="text" value="Almost there! (It's a lie.)"/>
    </properties>
   </object>
   <object id="23" name="guide 4" type="guide" x="416" y="64" width="48" height="32">
    <properties>
-    <property name="text" value="At this altitude, sometimes people see illusions."/>
+    <property name="text" value="At this altitude, sometimes people see illusions, such as the mushroom to the right.)"/>
    </properties>
   </object>
   <object id="28" name="peak shroom" type="mushroom" x="32" y="32" width="16" height="16">
@@ -197,7 +197,7 @@
   </object>
   <object id="30" name="guide 3" type="guide" x="192" y="80" width="48" height="32">
    <properties>
-    <property name="text" value="Unfortunately, this is not the highest point"/>
+    <property name="text" value="Unfortunately, this is not the highest point. Keep searching!"/>
    </properties>
   </object>
  </objectgroup>

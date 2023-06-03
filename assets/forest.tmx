@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" width="30" height="50" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="37">
+<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" width="30" height="50" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="38">
  <editorsettings>
   <export target="map-forest.lua" format="lua"/>
  </editorsettings>
@@ -207,7 +207,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,610,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,779,780,781,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -283,7 +283,7 @@
   </object>
   <object id="31" name="guide" type="guide" x="96" y="608" width="48" height="32">
    <properties>
-    <property name="text" value="The forest of Shelter Creek is a pretty big forest. Don't get lost!"/>
+    <property name="text" value="The forest of Shelter Creek is a pretty big forest. Don't get lost!  Tip: press 'x' to jump."/>
    </properties>
   </object>
   <object id="32" name="shy shroom" type="mushroom" x="16" y="336" width="16" height="16">
@@ -296,6 +296,11 @@
     <property name="spawndir" value="right"/>
     <property name="spawnpoint" type="int" value="1"/>
     <property name="target" value="peak"/>
+   </properties>
+  </object>
+  <object id="37" name="guide 2" type="guide" x="192" y="144" width="48" height="32">
+   <properties>
+    <property name="text" value="Some says a leap of faith requires bravery."/>
    </properties>
   </object>
  </objectgroup>

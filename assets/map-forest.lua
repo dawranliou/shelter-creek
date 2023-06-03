@@ -10,7 +10,7 @@ return {
   tilewidth = 16,
   tileheight = 16,
   nextlayerid = 6,
-  nextobjectid = 37,
+  nextobjectid = 38,
   properties = {},
   tilesets = {
     {
@@ -577,7 +577,7 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 610, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 779, 780, 781, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -740,7 +740,7 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["text"] = "The forest of Shelter Creek is a pretty big forest. Don't get lost!"
+            ["text"] = "The forest of Shelter Creek is a pretty big forest. Don't get lost!  Tip: press 'x' to jump."
           }
         },
         {
@@ -773,6 +773,21 @@ return {
             ["spawndir"] = "right",
             ["spawnpoint"] = 1,
             ["target"] = "peak"
+          }
+        },
+        {
+          id = 37,
+          name = "guide 2",
+          type = "guide",
+          shape = "rectangle",
+          x = 192,
+          y = 144,
+          width = 48,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["text"] = "Some says a leap of faith requires bravery."
           }
         }
       }
