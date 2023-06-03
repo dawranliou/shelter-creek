@@ -1,10 +1,10 @@
-VERSION=0.1.0
+VERSION=1.0.0
 LOVE_VERSION=11.4
-NAME="ShelterCreek"
+NAME="shelter-creek"
 ITCH_ACCOUNT=dawranliou
 URL=https://github.com/dawranliou/shelter-creek
 AUTHOR="Daw-Ran Liou"
-DESCRIPTION="A boy discovers a variety of mushrooms amonst the forest of Shelter Creek"
+DESCRIPTION="Curious mushroom varieties grow in the solitary forest of Shelter Creek. Never has anyone in history seen and documented all those mushrooms until now."
 GITHUB_USERNAME := $(shell grep GITHUB_USERNAME credentials.private | cut -d= -f2)
 GITHUB_PAT := $(shell grep GITHUB_PAT credentials.private | cut -d= -f2)
 LIBS := $(wildcard lib/*)
