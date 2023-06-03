@@ -10,7 +10,7 @@ return {
   tilewidth = 16,
   tileheight = 16,
   nextlayerid = 6,
-  nextobjectid = 35,
+  nextobjectid = 37,
   properties = {},
   tilesets = {
     {
@@ -662,6 +662,21 @@ return {
           properties = {
             ["spawnpoint"] = 2
           }
+        },
+        {
+          id = 36,
+          name = "Player",
+          type = "",
+          shape = "rectangle",
+          x = 448,
+          y = 176,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["spawnpoint"] = 3
+          }
         }
       }
     },
@@ -741,6 +756,23 @@ return {
           visible = true,
           properties = {
             ["shroomidx"] = 4
+          }
+        },
+        {
+          id = 35,
+          name = "portal 3",
+          type = "portal",
+          shape = "rectangle",
+          x = 464,
+          y = 160,
+          width = 16,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["spawndir"] = "right",
+            ["spawnpoint"] = 1,
+            ["target"] = "peak"
           }
         }
       }

@@ -25,8 +25,8 @@
             "scale": 1.2245,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 727.2356063699469,
-                "y": 263.781135157207
+                "x": 152.30706410779914,
+                "y": 327.48060432829726
             }
         },
         "cabin.tmx#background": {
@@ -45,8 +45,8 @@
             "scale": 1.6024,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 105.15476784822766,
-                "y": 332.6260609086371
+                "x": 8.42486270594111,
+                "y": 247.75336994508237
             }
         },
         "cave.tmx#background": {
@@ -61,11 +61,11 @@
                 4,
                 3
             ],
-            "scale": 1.1933,
+            "scale": 1.4093,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 24.72136093186961,
-                "y": 343.58501634123854
+                "x": 447.3852267082949,
+                "y": 176.68345987369617
             }
         },
         "forest.tmx#background": {
@@ -73,6 +73,25 @@
         },
         "forest.tmx#spritesheet": {
             "scaleInDock": 2.2444
+        },
+        "peak.tmx": {
+            "expandedObjectLayers": [
+                5,
+                4,
+                3
+            ],
+            "scale": 1.0105,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 8.41167738743195,
+                "y": 391.8852053438892
+            }
+        },
+        "peak.tmx#background": {
+            "scaleInDock": 1.015
+        },
+        "peak.tmx#spritesheet": {
+            "scaleInDock": 1
         },
         "spritesheet.tsx": {
             "dynamicWrapping": false,

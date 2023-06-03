@@ -21,9 +21,9 @@
 (var portals {})
 (local portal-location
        {:cabin "assets/map-cabin.lua"
-        ;; temporary for testing
         :forest "assets/map-forest.lua"
-        :cave "assets/map-cave.lua"})
+        :cave "assets/map-cave.lua"
+        :peak "assets/map-peak.lua"})
 
 (local sprite (love.graphics.newImage "assets/spritesheet.png"))
 (local shroomdex-quad (love.graphics.newQuad 0 (* 9 16) (* 9 16) (* 6 16)
