@@ -12,7 +12,7 @@
   (local canvas (love.graphics.getCanvas))
   (local w (canvas:getWidth))
   (love.graphics.clear 0.2235 0.2078 0.2549)
-  (love.graphics.draw cover-image 80 40 0 3)
+  (love.graphics.draw cover-image 40 10 0 3)
   ;; (love.graphics.printf "Shelter Creek" 0 460 (/ w 4) :center 0 4)
   (when toggle?
     (love.graphics.printf "Press <X> to start"
