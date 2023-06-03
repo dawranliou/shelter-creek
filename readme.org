@@ -130,6 +130,7 @@ So, tomorrow is a big day.  I'll have to finish:
 And if I get the time, I'd like to finish
 - Prettier intro,
 - Mushroom animation,
+- Improve jump control (cayote time, press-and-hold)
 - Probably 10 other more things but I cannot recall now.
 
 * Credits and Licenses
