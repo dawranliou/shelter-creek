@@ -3,6 +3,7 @@
 (local Camera (require "lib/camera"))
 (local anim8 (require "lib/anim8"))
 (local bump (require "lib/bump"))
+(local music (require :music))
 
 (var DEBUG false)
 
@@ -455,6 +456,11 @@
       x))
 
 (fn update [dt set-mode]
+  (let [track (case scene
+                "assets/map-cave.lua" :cave
+                _ :general)]
+    (music.play-track track))
+
   (case transition?
     :end-game (do (set transition-pct (+ transition-pct 0.01))
                   (when (<= 1 transition-pct)

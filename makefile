@@ -1,6 +1,6 @@
 VERSION=0.1.0
 LOVE_VERSION=11.4
-NAME=Shelter Creek
+NAME="ShelterCreek"
 ITCH_ACCOUNT=dawranliou
 URL=https://github.com/dawranliou/shelter-creek
 AUTHOR="Daw-Ran Liou"

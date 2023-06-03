@@ -1,3 +1,4 @@
+(local music (require :music))
 (var cover-image nil)
 (var counter 0)
 (var toggle? true)
@@ -17,6 +18,7 @@
     (love.graphics.printf "Press <X> to start"
                           0 500 (/ w 3) :center 0 3)))
 (fn update [dt set-mode]
+  (music.play-track :general)
   (if (< counter 60)
       (set counter (+ counter 1))
       (do (set counter 0)

@@ -1,7 +1,9 @@
+(local music (require :music))
 (var timer 0)
 (var frame 0)
 
 (fn init []
+  (music.stop-all-tracks)
   (set frame 0)
   (set timer 0))
 
@@ -20,6 +22,7 @@
     (love.graphics.printf "press 'x' to restart" 0 450 (/ w 3) :center 0 3)))
 
 (fn update [dt]
+  (music.play-track :general)
   (set frame (+ frame 1))
   (when (= frame 60)
     (set frame 0))

@@ -138,6 +138,8 @@ And if I get the time, I'd like to finish
 - Visual Art by Daw-Ran Liou; licenced under [[https://creativecommons.org/licenses/by-sa/4.0/][CC BY-SA 4.0]]
 - Font: [[https://fonts.google.com/specimen/Silkscreen][Silkscreen]] by Jason Kottke; licenced under [[https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL][Open Font License]]
 - Color palette: [[https://lospec.com/palette-list/tangerine-noir][Tangerine Noir]] by [[https://lospec.com/we][we]]
-- Music TODO
+- Music:
+  - [[https://opengameart.org/content/forest-02][Forest 02]] by Beau Buckley; licensed under [[https://creativecommons.org/licenses/by-sa/4.0/][CC BY-SA 4.0]]
+  - [[https://opengameart.org/content/cave-01][Cave 01]] by Beau Buckley; licensed under [[https://creativecommons.org/licenses/by-sa/4.0/][CC BY-SA 4.0]] 
 - SFX TODO
 
