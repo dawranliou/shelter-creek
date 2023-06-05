@@ -1,6 +1,6 @@
 love.conf = function(t)
    t.gammacorrect = true
-   t.title, t.identity = "Shelter-Creek", "ShelterCreek"
+   t.title, t.identity = "shelter-creek", "ShelterCreek"
    t.modules.joystick = false
    t.modules.physics = false
    -- t.window.resizable = true
