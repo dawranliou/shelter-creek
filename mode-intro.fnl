@@ -2,6 +2,10 @@
 (var cover-image nil)
 (var counter 0)
 (var toggle? true)
+(local moonshine (require "lib/moonshine"))
+(var effect ((. (moonshine moonshine.effects.crt) "chain")
+             (moonshine.effects.scanlines)))
+(var time 0)
 
 (fn activate []
   (love.graphics.setDefaultFilter "nearest" "nearest" 0)
@@ -11,13 +15,17 @@
 (fn draw [message]
   (local canvas (love.graphics.getCanvas))
   (local w (canvas:getWidth))
+  (local h (canvas:getHeight))
   (love.graphics.clear 0.2235 0.2078 0.2549)
   (love.graphics.draw cover-image 40 10 0 3)
   ;; (love.graphics.printf "Shelter Creek" 0 460 (/ w 4) :center 0 4)
   (when toggle?
     (love.graphics.printf "Press <X> to start"
-                          0 500 (/ w 3) :center 0 3)))
+                          0 500 (/ w 3) :center 0 3))
+    )
+
 (fn update [dt set-mode]
+  (set time (+ time dt))
   (music.play-track :general)
   (if (< counter 60)
       (set counter (+ counter 1))
@@ -31,7 +39,7 @@
 ;; Side effect on reload
 (activate)
 
-{: activate 
- : draw
+{: activate
+ :draw (fn [] (effect draw))
  : update
  : keypressed}

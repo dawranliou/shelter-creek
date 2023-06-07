@@ -3,6 +3,8 @@
 (local Camera (require "lib/camera"))
 (local anim8 (require "lib/anim8"))
 (local bump (require "lib/bump"))
+(local moonshine (require "lib/moonshine"))
+(var effect (moonshine moonshine.effects.crt))
 (local music (require :music))
 
 (var DEBUG false)
@@ -558,6 +560,6 @@
 (setup-scene "assets/map-cabin.lua" 1 :right)
 
 {:activate reset-progress
- : draw
+ :draw (fn [] (effect draw))
  : update
  : keypressed}
